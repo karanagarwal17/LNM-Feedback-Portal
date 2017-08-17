@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Feedback Form</title>
+		<meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
+		<meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script src="js/modernizr.custom.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	</head>
+	<body> 
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<!-- <li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li class="gn-search-item">
+									<input placeholder="Search" type="search" class="gn-search">
+									<a class="gn-icon gn-icon-search"><span>Search</span></a>
+								</li>
+								<li class="dropdown">
+									<a class="gn-icon gn-icon-download submenuhead">Downloads</a>
+										<div class="dropdown-content">
+											<ul class="gn-submenu">
+												<a href="#">Link 1</a>
+												<a href="#">Link 2</a>
+												<a href="#">Link 3</a>
+											</ul>
+										</div>
+								</li>
+								<li><a class="gn-icon gn-icon-cog">Settings</a></li>
+								<li><a class="gn-icon gn-icon-help">Help</a></li>
+								<li>
+									<a class="gn-icon gn-icon-archive">Archives</a>
+									<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-article">Articles</a></li>
+										<li><a class="gn-icon gn-icon-pictures">Images</a></li>
+										<li><a class="gn-icon gn-icon-videos">Videos</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</li> -->
+				<header>
+					 <img src="img/logo.png">
+     				 <h1><b>LNMIIT Feedback and Complaint portal</b></h1>
+				</header>
+				
+			</ul>
+			<div id="student" class="tabcontent">
+            <div class="form col-md-12">
+              <div class="col-md-6">
+                <h2><b>Login Here</b></h2>
+                  <form class="login-form" method="post" action="#">
+                    <div class="email">
+                    <input type="email" name="email" class="login-email" value="<?php echo $email;?>" placeholder="Type your LNMIIT Email"/>
+                    <span class="domain">@lnmiit.ac.in</span>
+                    <button class="otp-button" type="submit">Send OTP</button>
+                  </div>
+                    <input type="password" placeholder="Type Your OTP" name="otp"/>
+                   
+                    <button><b>Submit<b></button>
+                  </form>
+              </div>
+              <div class="rules-features col-md-6">
+                  <h3><b>Rules</b></h3>
+                    <ul>
+                      <li>Only LNMIIT domain email id can be use.</li>
+                      <li>You'll get an OTP on your email after click on send otp button.</li>
+                      <li>OTP will expire after an hour</li>
+                      <li>After Submiting your feedback you'll recieve an acknowledgement number on your email id</li>
+                    </ul>
+              </div>
+            </div>
+        </div>
+			
+		</div><!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/gnmenu.js"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+	</body>
+</html>
