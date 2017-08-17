@@ -1,0 +1,19 @@
+{
+  "name": "lnm-feedback-portal",
+  "version": "1.0.0",
+  "description": "Repo for holding the code for Feedback and Complaints Portal of LNMIIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karanagarwal17/LNM-Feedback-Portal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karanagarwal17/LNM-Feedback-Portal/issues"
+  },
+  "homepage": "https://github.com/karanagarwal17/LNM-Feedback-Portal#readme"
+}
