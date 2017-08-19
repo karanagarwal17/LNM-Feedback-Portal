@@ -3,6 +3,11 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+var config = require('./config');
 
 var loginrouter = require('./routes/loginrouter');
 var logoutrouter = require('./routes/logoutrouter');
@@ -22,8 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var mongoose = require('mongoose');
 
-var url = 'mongodb://localhost:27017/FeedbackPortal';
-mongoose.connect(url);
+mongoose.connect(config.mongoUrl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

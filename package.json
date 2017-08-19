@@ -4,7 +4,8 @@
   "description": "Repo for holding the code for Feedback and Complaints Portal of LNMIIT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,12 @@
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
+    "jsonwebtoken": "^7.4.3",
     "mongoose": "^4.11.7",
-    "morgan": "^1.8.2"
+    "morgan": "^1.8.2",
+    "nodemailer": "^4.0.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.1.0"
   }
 }
