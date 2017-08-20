@@ -13,7 +13,7 @@ var feedbackrouter = require('./routes/feedbackrouter');
 var courserouter = require('./routes/courserouter');
 
 var app = express();
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
