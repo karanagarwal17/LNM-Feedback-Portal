@@ -8,6 +8,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config()
 
+var facultyrouter = require('./routes/facultyrouter');
 var replyrouter = require('./routes/replyrouter');
 var feedbackrouter = require('./routes/feedbackrouter');
 var userrouter = require('./routes/users');
@@ -34,6 +35,7 @@ db.once('open', function() {
 app.use('/feedback', feedbackrouter);
 app.use('/reply', replyrouter);
 app.use('/users', userrouter);
+app.use('/faculty', facultyrouter);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
