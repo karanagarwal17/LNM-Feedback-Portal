@@ -7,7 +7,9 @@ var facultySchema = new Schema({
   gender: {type: 'string', maxlength: 10, nullable: true},
   email_id: {type: 'string', maxlength: 30, nullable: true},
   department: {type: 'string', maxlength: 10, nullable: true},
-  hod: {type: 'boolean'}
+  hod: {type: 'boolean'},
+  year: {type: 'string', nullable: true},
+  subjects: {type: [String]}
 },{
   timestamps: true
 });

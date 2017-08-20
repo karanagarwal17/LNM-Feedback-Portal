@@ -10,7 +10,7 @@ require('dotenv').config()
 
 var replyrouter = require('./routes/replyrouter');
 var feedbackrouter = require('./routes/feedbackrouter');
-var courserouter = require('./routes/courserouter');
+var userrouter = require('./routes/users');
 
 var app = express();
 app.listen(process.env.PORT || 3000);
@@ -33,7 +33,7 @@ db.once('open', function() {
 
 app.use('/feedback', feedbackrouter);
 app.use('/reply', replyrouter);
-app.use('/course', courserouter);
+app.use('/users', userrouter);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
