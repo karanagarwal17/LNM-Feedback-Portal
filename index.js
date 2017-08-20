@@ -8,9 +8,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config()
 
-var loginrouter = require('./routes/loginrouter');
-var logoutrouter = require('./routes/logoutrouter');
-var signuprouter = require('./routes/signuprouter');
 var replyrouter = require('./routes/replyrouter');
 var feedbackrouter = require('./routes/feedbackrouter');
 var courserouter = require('./routes/courserouter');
@@ -34,9 +31,6 @@ db.once('open', function() {
 	console.log("Connected correctly to server");
 });
 
-//app.use('/login', loginrouter);
-//app.use('/logout', logoutrouter);
-//app.use('/signup', signuprouter);
 app.use('/feedback', feedbackrouter);
 app.use('/reply', replyrouter);
 app.use('/course', courserouter);
