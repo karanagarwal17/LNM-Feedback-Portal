@@ -6,8 +6,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
-var config = require('./config');
+require('dotenv').config()
 
 var loginrouter = require('./routes/loginrouter');
 var logoutrouter = require('./routes/logoutrouter');
