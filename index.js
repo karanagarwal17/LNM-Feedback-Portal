@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var mongoose = require('mongoose');
 
-mongoose.connect(config.mongoUrl);
+mongoose.connect(process.env.mongoUrl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
