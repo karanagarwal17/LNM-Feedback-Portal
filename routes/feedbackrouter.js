@@ -1,8 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var mailer = require('../services/mailer');
 
 var Feedbacks = require('../models/feedbacks');
+var Students = require('../models/students');
 
 var feedbackrouter = express.Router();
 
@@ -22,6 +24,12 @@ feedbackrouter.route('/')
 				console.log(err);
 			}
 			console.log('Feedback created!!');
+			Students.findById(req.body.student_id, function(err, student){
+				if (err) {
+					console.log(err);
+				}
+				mailer.feedbackConfirmation(student.email_id);
+			})
 			res.status(200);
 			res.json(feedback);
 		});

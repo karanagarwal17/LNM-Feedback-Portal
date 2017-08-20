@@ -22,6 +22,7 @@ replyrouter.route('/')
 				console.log(err);
 			}
 			console.log('Reply created!!');
+			mailer.replyRecieved();
 			res.status(200);
 			res.json(reply);
 		});
