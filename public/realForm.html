@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/uniform.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
+</head>
+<body ng-app="lnmApp" ng-controller="app">
+
+<!--Header-part-->
+<div id="header">
+  <h1><a href="dashboard.html">Admin</a></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav">
+    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+  </ul>
+</div>
+
+<!--start-top-serch-->
+<!--close-top-serch-->
+
+<!--sidebar-menu-->
+
+<div id="sidebar">
+  <a href="#" class="visible-phone"><i class="icon icon-file"></i>Addons</a>
+  <ul>
+    <li><a href="index.html" class=""><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+     <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>Faculty</span> <span class="label label-important">5</span></a>
+      <ul>
+        <li ng-if="!formToggle" ng-repeat="branch in branches"><a id="branch-{{branch.id}}"" href="#">{{branch.name}}</a></li>
+      </ul>
+    </li>
+    <li><a href="chat.html"><i class="icon icon-tint"></i> <span>Chat</span></a></li>
+    <li><a href="login.html"><i class="icon icon-tint"></i> <span>LogOut</span></a></li>
+    <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>About-us</span></a></li>
+  </ul>
+</div>
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Feedback-Form</h5>
+        </div>
+        <div class="widget-content nopadding">
+        <form ng-if="!formToggle" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">Select Faculty</label>
+              <div class="controls">
+                <select id="facultyDropdown" ng-model="facultySelect" ng-options="faculty as faculty.name for faculty in faculties">
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Select Subject</label>
+              <div class="controls">
+                <select id="subjectDropdown" ng-disabled="!facultySelect" ng-options="subject as subject for subject in facultySelect.subjects" ng-model="subjectSelect" >
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Feedback Title :</label>
+              <div class="controls">
+                <input ng-model="title" type="text" class="span11" placeholder="Feedback Title" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Feedback</label>
+              <div class="controls">
+                <textarea class="span11" ></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button style="float: right;" type="submit" class="btn btn-success">Save</button>
+            </div>
+          </form>
+          <form ng-if="formToggle" class="form-horizontal">
+        <div class="control-group">
+              <label class="control-label">Select Year</label>
+              <div  id="selectYear" class="controls">
+                <label>
+                  <input type="radio" name="radio" value="1" />
+                  1st Year</label>
+                <label>
+                  <input type="radio" name="radio" value="2"/>
+                  2nd Year</label>
+                <label>
+                  <input type="radio" name="radio" value="3"/>
+                  3rd Year</label>
+                <label>
+                <input type="radio" name="radio" value="4"/>
+                4th Year</label>
+                <label>
+                <input type="radio" name="radio" value="PG" />
+                PG</label>
+              </div>
+            </div>
+            <div class="form-actions">
+              <a style="float: right;" ng-click="goNext()" type="submit" class="btn btn-success">Next</a>
+            </div>
+            </form>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Footer-part-->
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2013 &copy; Created By <a href="http://themedesigner.in">The Team</a> </div>
+</div>
+<!--end-Footer-part-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-cookies.min.js"></script>
+<script src="js/scripts/jquery.min.js"></script>
+<!-- <script src="js/angular.min.js"></script> -->
+<script src="js/scripts/jquery.ui.custom.js"></script>
+<script src="js/scripts/bootstrap.min.js"></script>
+<script src="js/scripts/jquery.uniform.js"></script>
+<!-- <script src="js/select2.min.js"></script> -->
+<script src="js/scripts/jquery.dataTables.min.js"></script>
+<script src="js/scripts/matrix.js"></script>
+<script src="js/scripts/matrix.tables.js"></script>
+<script src="js/controllers/realFormController.js"></script>
+</body>
+</html>

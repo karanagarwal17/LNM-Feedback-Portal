@@ -13,38 +13,30 @@
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body ng-app="lnmApp" ng-controller="adminDash">
 
 <!--Header-part-->
 <div id="header">
   <h1><a href="dashboard.html">Admin</a></h1>
 </div>
-<!--close-Header-part--> 
+<!--close-Header-part-->
 
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
-  <ul class="nav">   
+  <ul class="nav">
     <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
   </ul>
 </div>
 
 <!--start-top-serch-->
-<!--close-top-serch--> 
+<!--close-top-serch-->
 
 <!--sidebar-menu-->
 
-<div id="sidebar"> 
+<div id="sidebar">
   <a href="#" class="visible-phone"><i class="icon icon-file"></i>Addons</a>
   <ul>
     <li><a href="index.html" class=""><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-     <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>FeedBacks</span> <span class="label label-important">5</span></a>
-      <ul>
-        <li><a href="form-common.html">Faculty</a></li>
-        <li><a href="form-validation.html">Lab</a></li>
-        <li><a href="form-wizard.html">Acads</a></li>
-        <li><a href="form-wizard.html">Mess</a></li>
-      </ul>
-    </li>    
     <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>LogOut</span></a></li>
     <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>About-us</span></a></li>
   </ul>
@@ -59,44 +51,23 @@
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Data table</h5>
+            <h5>Feedbacks</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Category</th>
+                  <th>Title</th>
                   <th>FeedBack</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="gradeX">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Win 95+</td>
-                  <td class="center">4</td>
-                </tr>
-                <tr class="gradeC">
-                  <td>Misc</td>
-                  <td>IE Mobile</td>
-                  <td>Windows Mobile 6</td>
-                  <td class="center">-</td>
-                </tr>
-                <tr class="gradeC">
-                  <td>Misc</td>
-                  <td>PSP browser</td>
-                  <td>PSP</td>
-                  <td class="center">-</td>
-                </tr>
-                <tr class="gradeU">
-                  <td>Other browsers</td>
-                  <td>All others</td>
-                  <td>-</td>
-                  <td class="center">-</td>
-                </tr>
+                <a href="chat.html"><tr ng-click="replyFeedback()" style="cursor: pointer;" ng-repeat="feedback in feedbacks" class="gradeX">
+                  <td>{{feedback.title}}</td>
+                  <td>{{feedback.feedback}}</td>
+                  <td>{{feedback.status}}</td>
+                </tr></a>
               </tbody>
             </table>
           </div>
@@ -107,16 +78,18 @@
 </div>
 <!--Footer-part-->
 <div class="row-fluid">
-  <div id="footer" class="span12"> 2013 &copy; Created By <a href="http://themedesigner.in">The Team</a> </div>
+  <div id="footer" class="span12"> 2017 &copy; Created By <a href="http://themedesigner.in"></a> </div>
 </div>
 <!--end-Footer-part-->
-<script src="js/jquery.min.js"></script> 
-<script src="js/jquery.ui.custom.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/jquery.uniform.js"></script> 
-<script src="js/select2.min.js"></script> 
-<script src="js/jquery.dataTables.min.js"></script> 
-<script src="js/matrix.js"></script> 
-<script src="js/matrix.tables.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="js/scripts/jquery.min.js"></script>
+<script src="js/scripts/jquery.ui.custom.js"></script>
+<script src="js/scripts/bootstrap.min.js"></script>
+<script src="js/scripts/jquery.uniform.js"></script>
+<!-- <script src="js/select2.min.js"></script> -->
+<script src="js/scripts/jquery.dataTables.min.js"></script>
+<script src="js/scripts/matrix.js"></script>
+<script src="js/scripts/matrix.tables.js"></script>
+<script src="js/controllers/adminDashController.js"></script>
 </body>
 </html>
