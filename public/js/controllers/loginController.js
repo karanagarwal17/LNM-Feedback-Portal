@@ -1,8 +1,8 @@
 var app = angular.module('lnmApp', ['ngCookies']);
 
 app.controller('loginApp', ['$scope', '$http', '$cookies', function($scope, $http, $cookies) {
-	// var baseUrl = 'https://lnm-feedback-portal.herokuapp.com/';
-	var baseUrl = 'http://10.42.0.1:3000/';
+	var baseUrl = 'https://lnm-feedback-portal.herokuapp.com/';
+	// var baseUrl = 'http://10.42.0.1:3000/';
 	$scope.sendOtp = function() {
 
 		$scope.register = {
