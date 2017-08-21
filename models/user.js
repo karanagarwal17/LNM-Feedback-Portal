@@ -5,7 +5,8 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var User = new Schema({
     username: String,
     password: String,
-    type: {type: String, enum: ['student','faculty','admin'], nullable: true}
+    type: {type: String, enum: ['student','faculty','admin'], nullable: true},
+    user_id: {type: 'String', maxlength: 40, nullable: true}
 }, {
   timestamps: true
 });
