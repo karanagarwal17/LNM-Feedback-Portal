@@ -2,6 +2,7 @@ var app = angular.module('lnmApp', []);
 
 app.controller('loginApp', ['$scope', '$http', 'loginFactory', function($scope, $http, loginFactory) {
 	// var baseUrl = 'http://10.42.0.1:3000/';
+	var baseUrl = 'https://lnm-feedback-portal.herokuapp.com/';
 	$scope.sendOtp = function() {
 
 		$scope.register = {
@@ -27,9 +28,9 @@ app.controller('loginApp', ['$scope', '$http', 'loginFactory', function($scope, 
 			console.log(response);
 
 			if (response.data.user.type == 'student') {
-				window.location.href = 'file:///media/umang/Entropy/LNM-Feedback-Portal/public/realForm.html';
+				window.location.href = baseUrl + 'realForm.html';
 			} else if (response.data.user.type == 'faculty') {
-				window.location.href = 'file:///media/umang/Entropy/LNM-Feedback-Portal/public/adminDash.html';
+				window.location.href = baseUrl + 'adminDash.html';
 			}
 
 
