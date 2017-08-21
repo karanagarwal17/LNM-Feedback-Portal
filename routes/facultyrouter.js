@@ -10,7 +10,7 @@ var facultyrouter = express.Router();
 facultyrouter.use(bodyParser.json());
 
 facultyrouter.route('/')
-	.get(Verify.verifyUser, function(req, res, next) {
+	.get(function(req, res, next) {
 		Faculties.find({}, function(err, faculties) {
 			if (err){
 				console.log(err);
@@ -19,7 +19,7 @@ facultyrouter.route('/')
 			res.status(200).json(faculties);
 		});
 	})
-	.post(Verify.verifyUser, function(req, res, next) {
+	.post(function(req, res, next) {
 		var faculty = req.body;
 		Faculties.create(faculty, function(err, faculty) {
 			if (err) {
@@ -32,7 +32,7 @@ facultyrouter.route('/')
 	});
 
 facultyrouter.route('/:year')
-	.get(Verify.verifyUser, function(req, res, next) {
+	.get(function(req, res, next) {
 		Faculties.find({ 'year' : req.params.year}, function(err, faculty) {
 			if (err) {
 				console.log(err);

@@ -10,7 +10,7 @@ var feedbackrouter = express.Router();
 feedbackrouter.use(bodyParser.json());
 
 feedbackrouter.route('/')
-	.get(Verify.verifyUser, function(req, res, next) {
+	.get(function(req, res, next) {
 		Feedbacks.find({student_id: req.body.student_id}, function(err, feedbacks) {
 			if (err) {
 				console.log(err);
@@ -19,7 +19,7 @@ feedbackrouter.route('/')
 			res.status(200).json(feedbacks);
 		});
 	})
-	.post(Verify.verifyUser, function(req, res, next) {
+	.post(function(req, res, next) {
 		var feedback = req.body;
 		Feedbacks.create(feedback, function(err, feedback) {
 			if (err) {
@@ -39,7 +39,7 @@ feedbackrouter.route('/')
 	});
 
 feedbackrouter.route('/:Id/replies')
-	.post(Verify.verifyUser, function(req, res, next) {
+	.post(function(req, res, next) {
 		Feedbacks.findById(req.params.Id, function(err, feedback) {
 			if (err){
 				console.log(err);
