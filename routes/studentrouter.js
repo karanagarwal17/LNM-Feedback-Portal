@@ -11,8 +11,11 @@ studentrouter.use(bodyParser.json());
 studentrouter.route('/')
 	.get(function(req, res, next) {
 		Students.find({}, function(err, students) {
-			if (err) console.log(err);;
-			res.json(students);
+			if (err){
+				console.log(err);
+				return res.status(500).json({err: err});
+			}
+			res.status(200).json(students);
 		});
 	})
 	.post(function(req, res, next) {
@@ -20,10 +23,10 @@ studentrouter.route('/')
 		Students.create(student, function(err, student) {
 			if (err) {
 				console.log(err);
+				return res.status(500).json({err: err});
 			}
 			console.log('Student created!!');
-			res.status(200);
-			res.json(student);
+			res.status(200).json(student);
 		});
 	});
 

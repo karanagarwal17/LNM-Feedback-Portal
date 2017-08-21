@@ -11,8 +11,11 @@ courserouter.use(bodyParser.json());
 courserouter.route('/')
 	.get(function(req, res, next) {
 		Courses.find({}, function(err, courses) {
-			if (err) console.log(err);;
-			res.json(courses);
+			if (err){
+				console.log(err);
+				return res.status(500).json({err: err});
+			}
+			res.status(200).json(courses);
 		});
 	})
 	.post(function(req, res, next) {
@@ -20,21 +23,21 @@ courserouter.route('/')
 		Courses.create(course, function(err, course) {
 			if (err) {
 				console.log(err);
+				return res.status(500).json({err: err});
 			}
 			console.log('Course created!!');
-			res.status(200);
-			res.json(course);
+			res.status(200).json(course);
 		});
 	});
 
 courserouter.route('/:courseId')
 	.get(function(req, res, next) {
-		Courses.findById(req.params.courseId, function(err,
-			course) {
+		Courses.findById(req.params.courseId, function(err, course) {
 			if (err) {
 				console.log(err);
+				return res.status(500).json({err: err});
 			}
-			res.json(course);
+			res.status(200).json(course);
 		});
 	})
 	.put(function(req, res, next) {
@@ -43,14 +46,20 @@ courserouter.route('/:courseId')
 		}, {
 			new: true
 		}, function(err, course) {
-			if (err) console.log(err);;
-			res.json(course);
+			if (err){
+				console.log(err);
+				return res.status(500).json({err: err});
+			}
+			res.status(200).json(course);
 		});
 	})
 	.delete(function(req, res, next) {
 		Courses.findByIdAndRemove(req.params.courseId, function(err, resp) {
-			if (err) console.log(err);;
-			res.json(resp);
+			if (err){
+				console.log(err);
+				return res.status(500).json({err: err});
+			}
+			res.status(200).json(resp);
 		});
 	});
 

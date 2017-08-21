@@ -11,8 +11,11 @@ facultyrouter.use(bodyParser.json());
 facultyrouter.route('/')
 	.get(function(req, res, next) {
 		Faculties.find({}, function(err, faculties) {
-			if (err) console.log(err);;
-			res.json(faculties);
+			if (err){
+				console.log(err);
+				return res.status(500).json({err: err});
+			}
+			res.status(200).json(faculties);
 		});
 	})
 	.post(function(req, res, next) {
@@ -20,10 +23,10 @@ facultyrouter.route('/')
 		Faculties.create(faculty, function(err, faculty) {
 			if (err) {
 				console.log(err);
+				return res.status(500).json({err: err});
 			}
 			console.log('Faculty created!!');
-			res.status(200);
-			res.json(faculty);
+			res.status(200).json(faculty);
 		});
 	});
 
@@ -32,8 +35,9 @@ facultyrouter.route('/:year')
 		Faculties.find({ 'year' : req.params.year}, function(err, faculty) {
 			if (err) {
 				console.log(err);
+				return res.status(500).json({err: err});
 			}
-			res.json(faculty);
+			res.status(200).json(faculty);
 		});
 	});
 

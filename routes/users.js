@@ -17,9 +17,6 @@ router.post('/register', function(req, res) {
         }
         mailer.sendOTP(req.body.username,OTP);
         return res.status(200).json({status: 'Registration Successful!'});
-        //passport.authenticate('local')(req, res, function () {
-      //      return res.status(200).json({status: 'Registration Successful!'});
-      //  });
     });
 });
 
@@ -49,8 +46,7 @@ router.post('/login', function(req, res, next) {
   })(req,res,next);
 },
 function(err, req, res, next) {
-    // failure in login test route
-    return res.send({'status':'err','message':err.message});
+    return res.status(500).send({'status':'err','message':err.message});
   });
 
 router.get('/logout', function(req, res) {
