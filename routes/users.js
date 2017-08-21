@@ -3,21 +3,23 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
 var Verify    = require('./verify');
+var OtpGen = require('../services/OTP');
+var mailer = require('../services/mailer');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
 router.post('/register', function(req, res) {
-    User.register(new User({ username : req.body.username }),
-      req.body.password, function(err, user) {
+    var OTP = OtpGen.generateOTP();
+    var password = OTP.toString();
+    User.register(new User({ username : req.body.username }), password, function(err, user) {
         if (err) {
+            console.log(err);
             return res.status(500).json({err: err});
         }
-        passport.authenticate('local')(req, res, function () {
-            return res.status(200).json({status: 'Registration Successful!'});
-        });
+        mailer.sendOTP(req.body.username,OTP);
+        return res.status(200).json({status: 'Registration Successful!'});
+        //passport.authenticate('local')(req, res, function () {
+      //      return res.status(200).json({status: 'Registration Successful!'});
+      //  });
     });
 });
 
@@ -37,7 +39,6 @@ router.post('/login', function(req, res, next) {
           err: 'Could not log in user'
         });
       }
-
       var token = Verify.getToken(user);
               res.status(200).json({
         status: 'Login successful!',
@@ -46,7 +47,11 @@ router.post('/login', function(req, res, next) {
       });
     });
   })(req,res,next);
-});
+},
+function(err, req, res, next) {
+    // failure in login test route
+    return res.send({'status':'err','message':err.message});
+  });
 
 router.get('/logout', function(req, res) {
     req.logout();
