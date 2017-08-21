@@ -26,6 +26,11 @@ router.post('/register', function(req, res) {
 });
 
 router.post('/login', function(req, res, next) {
+  User.update('username': req.body.username, {type: req.body.type}, {new: true}, function(err, user){
+    if(err) {
+      console.log(err);
+    }
+  });
   passport.authenticate('local', function(err, user, info) {
     if (err) {
       return next(err);
