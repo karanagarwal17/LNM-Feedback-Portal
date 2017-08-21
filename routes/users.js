@@ -10,6 +10,9 @@ var mailer = require('../services/mailer');
 router.post('/register', function(req, res) {
     var OTP = OtpGen.generateOTP();
     var password = OTP.toString();
+    User.find( { 'username': req.body.username } ,function(err, user){
+      user.remove();
+    });
     User.register(new User({ username : req.body.username ,  }), password, function(err, user) {
         if (err) {
             console.log(err);
