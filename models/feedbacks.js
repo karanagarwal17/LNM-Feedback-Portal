@@ -9,7 +9,6 @@ var replySchema = new Schema({
   timestamps: true
 });
 
-
 var feedbackSchema = new Schema({
   title: {type: 'string', maxlength: 100, nullable: true},
   message: {type: 'string', maxlength: 1000, nullable: true},
