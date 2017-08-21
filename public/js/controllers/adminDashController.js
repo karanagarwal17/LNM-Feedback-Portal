@@ -1,6 +1,11 @@
 var app = angular.module('lnmApp', []);
 
-app.controller('adminDash', ['$scope', function($scope) {
+app.controller('adminDash', ['$scope', '$http', 'loginFactory', function($scope, $http, loginFactory) {
+
+	var baseUrl = 'https://lnm-feedback-portal.herokuapp.com/';
+
+	// $http.get(baseUrl)
+	// .success
 
 	$scope.feedbacks = [{
 		id: '1',

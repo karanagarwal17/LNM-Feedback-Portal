@@ -40,7 +40,7 @@
     <li><a href="index.html" class=""><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
      <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>Faculty</span> <span class="label label-important">5</span></a>
       <ul>
-        <li ng-if="!formToggle" ng-repeat="branch in branches"><a id="branch-{{branch.id}}"" href="#">{{branch.name}}</a></li>
+        <li ng-if="!formToggle" ng-repeat="branch in branches"><a id="branch-{{branch.id}}"" href="">{{branch.name}}</a></li>
       </ul>
     </li>
     <li><a href="chat.html"><i class="icon icon-tint"></i> <span>Chat</span></a></li>
@@ -64,7 +64,7 @@
             <div class="control-group">
               <label class="control-label">Select Faculty</label>
               <div class="controls">
-                <select id="facultyDropdown" ng-model="facultySelect" ng-options="faculty as faculty.name for faculty in faculties">
+                <select id="facultyDropdown" ng-model="facultySelect" ng-options="faculty as faculty.name for faculty in faculties track by faculty._id" >
                 </select>
               </div>
             </div>
@@ -84,11 +84,11 @@
             <div class="control-group">
               <label class="control-label">Feedback</label>
               <div class="controls">
-                <textarea class="span11" ></textarea>
+                <textarea ng-model="feedback" class="span11" ></textarea>
               </div>
             </div>
             <div class="form-actions">
-              <button style="float: right;" type="submit" class="btn btn-success">Save</button>
+              <button ng-click="save()" style="float: right;" type="submit" class="btn btn-success">Save</button>
             </div>
           </form>
           <form ng-if="formToggle" class="form-horizontal">
@@ -139,5 +139,6 @@
 <script src="js/scripts/matrix.js"></script>
 <script src="js/scripts/matrix.tables.js"></script>
 <script src="js/controllers/realFormController.js"></script>
+<script src="js/factories/loginFactory.js"></script>
 </body>
 </html>

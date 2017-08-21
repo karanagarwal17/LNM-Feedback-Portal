@@ -1,7 +1,6 @@
-var app = angular.module('lnmApp', ['ngCookies']);
+var app = angular.module('lnmApp', []);
 
-app.controller('loginApp', ['$scope', '$http', '$cookies', function($scope, $http, $cookies) {
-	var baseUrl = 'https://lnm-feedback-portal.herokuapp.com/';
+app.controller('loginApp', ['$scope', '$http', 'loginFactory', function($scope, $http, loginFactory) {
 	// var baseUrl = 'http://10.42.0.1:3000/';
 	$scope.sendOtp = function() {
 
@@ -9,10 +8,10 @@ app.controller('loginApp', ['$scope', '$http', '$cookies', function($scope, $htt
 			username: $scope.sendEmail
 		};
 		console.log($scope.register);
-		$http.post(baseUrl + 'users/register', $scope.register)
-			.success(function(response) {
-				console.log(response);
-			});
+
+		loginFactory.register($scope.register, function(response) {
+			console.log(response);
+		});
 	};
 
 	$scope.submit = function() {
@@ -23,13 +22,20 @@ app.controller('loginApp', ['$scope', '$http', '$cookies', function($scope, $htt
 			type: $scope.type
 		};
 		console.log($scope.submitOtp);
-		$http.post(baseUrl + 'users/login', $scope.submitOtp)
-			.success(function(response) {
-				console.log(response);
-				$cookies.get('token');
-				$cookies.put('token', 'vhdv');
-				console.log($cookies.get('token'));
-				// window.location.href = 'file:///media/umang/Entropy/LNM-Feedback-Portal/public/realForm.html';
-			});
+
+		loginFactory.login($scope.submitOtp, function(response) {
+			console.log(response);
+
+			if (response.data.user.type == 'student') {
+				window.location.href = 'file:///media/umang/Entropy/LNM-Feedback-Portal/public/realForm.html';
+			} else if (response.data.user.type == 'faculty') {
+				window.location.href = 'file:///media/umang/Entropy/LNM-Feedback-Portal/public/adminDash.html';
+			}
+
+
+		});
+
+
+
 	};
 }]);

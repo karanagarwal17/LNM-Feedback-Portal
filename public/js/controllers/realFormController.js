@@ -1,22 +1,48 @@
-var app = angular.module('lnmApp', ['ngCookies']);
+var app = angular.module('lnmApp', []);
 
-app.controller('app', ['$scope', '$http', '$cookies', function($scope, $http, $cookies) {
+app.controller('app', ['$scope', '$http', 'loginFactory', function($scope, $http, loginFactory) {
 	var baseUrl = 'https://lnm-feedback-portal.herokuapp.com/';
 	$scope.facultySelect = 0;
 
 	$scope.formToggle = true;
 
-	$scope.sendToken = $cookies.get('token');
-	console.log($scope.sendToken);
 	$scope.goNext = function() {
 
 		$scope.year = $('input:radio:checked').attr('value');
 		console.log($scope.year);
 		$scope.formToggle = false;
-		$http.get(baseUrl + 'faculty/' + $scope.year)
+		var token = loginFactory.getToken();
+		$http.get(baseUrl + 'faculty/' + $scope.year, {
+				headers: {
+					"x-access-token": token
+				}
+			})
 			.success(function(response) {
 				console.log(response);
 				$scope.faculties = response;
+			});
+	};
+
+	$scope.save = function() {
+
+		var id = $('select#facultyDropdown option:selected').val();
+		console.log(id);
+		console.log($scope.facultySelect);
+
+		var userId = loginFactory.getUserId();
+		console.log(userId);
+		$scope.sendFeedback = {
+			faculty_id: id,
+			faculty_name: $scope.facultySelect,
+			subject: $scope.subjectSelect,
+			title: $scope.title,
+			message: $scope.feedback,
+			student_id: userId
+		};
+
+		$http.post(baseUrl + 'feedback', $scope.sendFeedback)
+			.success(function(response) {
+				console.log(response);
 			});
 	};
 
