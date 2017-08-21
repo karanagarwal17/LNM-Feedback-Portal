@@ -33,8 +33,12 @@ passport.deserializeUser(User.deserializeUser());
 
 var mongoose = require('mongoose');
 
-mongoose.connect(process.env.mongoUrl);
-//mongoose.connect('mongodb://localhost:27017/lnm-feedback-portal');
+if(app.get('env') === 'development'){
+	mongoose.connect('mongodb://localhost:27017/lnm-feedback-portal');
+}
+else {
+	mongoose.connect(process.env.mongoUrl);
+}
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
