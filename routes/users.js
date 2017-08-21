@@ -55,7 +55,7 @@ router.post('/login', function(req, res, next) {
       var token = Verify.getToken(user);
               res.status(200).json({
         status: 'Login successful!',
-        success: true,
+        user: user,
         token: token
       });
     });
