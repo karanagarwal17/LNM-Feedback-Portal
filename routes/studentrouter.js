@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var Verify = require('./verify');
 
 var Students = require('../models/students');
 
@@ -9,7 +10,7 @@ var studentrouter = express.Router();
 studentrouter.use(bodyParser.json());
 
 studentrouter.route('/')
-	.get(function(req, res, next) {
+	.get(Verify.verifyUser, function(req, res, next) {
 		Students.find({}, function(err, students) {
 			if (err){
 				console.log(err);
@@ -18,7 +19,7 @@ studentrouter.route('/')
 			res.status(200).json(students);
 		});
 	})
-	.post(function(req, res, next) {
+	.post(Verify.verifyUser, function(req, res, next) {
 		var student = req.body;
 		Students.create(student, function(err, student) {
 			if (err) {

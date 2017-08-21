@@ -30,7 +30,18 @@ router.post('/login', function(req, res, next) {
         err: info
       });
     }
-    req.logIn(user, function(err) {
+    var date = new Date();
+    if(date.getTime() - user.otp_time.getTime() > 3600000){
+        User.findByIdAndRemove(user._id ,function(err, resp){
+          if (err) {
+              console.log(err);
+              res.status(500).json({err: err});
+          }
+          res.json({'err':'err','status':'Kindly generate a new OTP'});
+        });
+    }
+    else {
+      req.logIn(user, function(err) {
       if (err) {
         return res.status(500).json({
           err: 'Could not log in user'
@@ -43,6 +54,7 @@ router.post('/login', function(req, res, next) {
         token: token
       });
     });
+  }
   })(req,res,next);
 },
 function(err, req, res, next) {
