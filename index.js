@@ -9,7 +9,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config();
 
-
 var facultyrouter = require('./routes/facultyrouter');
 var studentrouter = require('./routes/studentrouter');
 var feedbackrouter = require('./routes/feedbackrouter');
