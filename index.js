@@ -12,7 +12,6 @@ require('dotenv').config();
 
 var facultyrouter = require('./routes/facultyrouter');
 var studentrouter = require('./routes/studentrouter');
-var replyrouter = require('./routes/replyrouter');
 var feedbackrouter = require('./routes/feedbackrouter');
 var userrouter = require('./routes/users');
 
@@ -45,7 +44,6 @@ db.once('open', function() {
 });
 
 app.use('/feedback', feedbackrouter);
-app.use('/reply', replyrouter);
 app.use('/users', userrouter);
 app.use('/faculty', facultyrouter);
 app.use('/student', studentrouter);
